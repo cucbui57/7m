@@ -11,7 +11,7 @@ define('model_path', app_path . '/Model/');
 
 require_once app_path . '/Core/app.php';
 require_once app_path . '/libs/functions.php';
-include app_path . '/config/config.php';
+include app_path . '/Config/Config.php';
 
 $app = new myMVC();
 $app->run();
