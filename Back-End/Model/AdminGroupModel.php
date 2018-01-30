@@ -6,7 +6,7 @@ class AdminGroupModel extends Model
     //Lấy danh sách các quyền
     public function listPermission()
     {
-        $sql = "SELECT id,ten_chuc_nang FROM chucnang ORDER BY id ASC ";
+        $sql = "SELECT id,function_name FROM function ORDER BY id ASC ";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return mysqli_errno($this->conn);
@@ -18,7 +18,7 @@ class AdminGroupModel extends Model
     //Lấy danh sách nhóm
     public function getGroup()
     {
-        $sql = "SELECT * FROM nhomtaikhoan ORDER BY id ASC";
+        $sql = "SELECT * FROM group_user ORDER BY id ASC";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return mysqli_errno($this->conn);
@@ -29,7 +29,7 @@ class AdminGroupModel extends Model
 
     public function getPermission($id)
     {
-        $sql = "SELECT trang_thai,id_chuc_nang FROM quyen WHERE id_nhom_tai_khoan =$id";
+        $sql = "SELECT status,id_function FROM access WHERE id_group_name =$id";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return mysqli_errno($this->conn);
@@ -50,7 +50,7 @@ class AdminGroupModel extends Model
             } else {
                 $trangThai = 0;
             }
-            $sql = "INSERT INTO quyen (id_nhom_tai_khoan,id_chuc_nang,trang_thai) VALUES($idNhom, $idChucNang, $trangThai) ON DUPLICATE KEY UPDATE trang_thai = $trangThai";
+            $sql = "INSERT INTO access (id_group_name,id_function,status) VALUES($idNhom, $idChucNang, $trangThai) ON DUPLICATE KEY UPDATE trang_thai = $trangThai";
             $res = mysqli_query($this->conn, $sql);
             if (mysqli_errno($this->conn)) {
                 return mysqli_errno($this->conn);

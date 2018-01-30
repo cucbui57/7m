@@ -1,0 +1,36 @@
+
+<link rel="stylesheet" href="public/backend/css/permiss.css">
+<div class="col-md-12">
+    <h3>Phân quyền chức năng cho nhóm tài khoản</h3>
+
+    <select class="selectpicker" id="selectPicker">
+        <?php
+        foreach ($this->view['group'] as $item) {
+            echo '<option value="'.$item[0].'">'.$item[0].'-'.$item[1].' </option>';
+        }
+        ?>
+    </select>
+    <div class="table-responsive">
+        <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+            <th>ID</th>
+            <th>Tên Quyền</th>
+            <th><input type="checkbox" id="checkall"/></th>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($this->view['perList'] as $row) {
+                echo '<tr>';
+                echo '<td>' . $row[0] . '</td>';
+                echo '<td>' . $row[1] . '</td>';
+                echo '<td><input type="checkbox" class="checkthis"/></td>';
+                echo '</tr>';
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-primary btn-md" id="btn-save" >Save</button>
+    <button type="button" class="btn btn-danger btn-md" id="btn-cancel">Cancel</button>
+</div>
+<script src="public/backend/js/admin-group/permission.js"></script>
