@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="public/backend/css/admin-user/edit.css">
+<script src="public/backend/js/admin-user/add.js"></script>
+
+<div class="container">
+    <form class="form-horizontal" role="form" method="post">
+        <h2>Edit User Form</h2>
+        <div class="form-group">
+            <label for="userName" class="col-sm-3 control-label">User name</label>
+            <div class="col-sm-9">
+                <input type="text" id="userName" class="form-control" placeholder="Tên đăng nhập" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                <input type="email" id="email" placeholder="Email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Password</label>
+            <div class="col-sm-9">
+                <input type="password" id="password" placeholder="Password" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">RePassword</label>
+            <div class="col-sm-9">
+                <input type="password" id="REpassword" placeholder="RePassword" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fullName" class="col-sm-3 control-label">Full name</label>
+            <div class="col-sm-9">
+                <input type="text" id="fullName" class="form-control" placeholder="Họ và tên" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="groupUser" class="col-sm-3 control-label">Nhóm tài khoản</label>
+            <div class="col-sm-9">
+                <select id="groupUser" class="form-control">
+                    <?php
+                    $count = count($this->layout);
+                    for ($i = 0; $i < $count; $i++) {
+                        $groupID = $this->layout[$i][0];
+                        $data = $this->layout[$i][1];
+                        echo '<option value="' . $groupID . '">' . $groupID . ' - ' . $data . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="btnSave">OK</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="btnCancel">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+

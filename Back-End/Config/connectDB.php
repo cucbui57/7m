@@ -1,6 +1,6 @@
 <?php
 //Kết nối tới Database
-$conn = mysqli_connect('localhost', 'root', '', 'quanlygiaodoan', 3306);
+$conn = mysqli_connect('localhost', 'root', '', 'banhangdadung', 3306);
 
 //Kết nối thất bại báo lỗi
 if (mysqli_errno($conn)) {

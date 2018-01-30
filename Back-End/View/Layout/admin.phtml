@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bảng quản lý</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs/jq-3.2.1/dt-1.10.16/cr-1.4.1/sc-1.4.3/datatables.min.css"/>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs/jq-3.2.1/dt-1.10.16/cr-1.4.1/sc-1.4.3/datatables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="public/backend/css/style.css">
+</head>
+<body>
+<div id="main">
+    <div id="throbber" style="display:none; min-height:120px;"></div>
+    <div id="noty-holder"></div>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="?controller=admin-user">
+                    ADMIN
+                </a>
+            </div>
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin User <b
+                            class="fa fa-angle-down"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="?controller=index&action=logout"><i class="fa fa-fw fa-power-off"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="?controller=admin-user"><i class="glyphicon glyphicon-home"></i> Home</a>
+                    </li>
+
+                        <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="glyphicon glyphicon-user"></i> Quản lý chung<i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <ul id="submenu-1" class="collapse">
+                            <li><a href="?controller=admin-user&action=list">Danh sách tài khoản</a></li>
+                            <li><a href="?controller=admin-store&action=list">Danh sách cửa hàng</a></li>
+                            <li><a href="?controller=admin-group&action=permission"> Phân quyền và chức năng</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#submenu-2"><i
+                                class="glyphicon glyphicon-gift"></i> Quản lý cửa hàng <i
+                                class="fa fa-fw fa-angle-down pull-right"></i></a>
+                        <ul id="submenu-2" class="collapse">
+                            <li><a href="?controller=admin-product&action=list"> Danh sách sản phẩm </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="?controller=admin-order&action=list"><i class="glyphicon glyphicon-duplicate"></i> Đơn
+                            hàng </a>
+                    </li>
+                    <li>
+                        <a href=""><i class="glyphicon glyphicon-list-alt"></i> Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row" id="main">
+                    <?php
+                    $this->showContent();
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

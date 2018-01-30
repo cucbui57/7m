@@ -51,10 +51,10 @@ class myMVC
 
         //Tạo mới Object Class
         $objectController = new $controllerClass();
-        if (!$this->checkAction($controller, $action)) {
-            echo '<b>Bạn không có quyền sử dụng chức năng này</b>';
-            exit();
-        }
+//        if (!$this->checkAction($controller, $action)) {
+//            echo '<b>Bạn không có quyền sử dụng chức năng này</b>';
+//            exit();
+//        }
         if (!method_exists($objectController, $actionName)) {
             die("Action $actionName Not Found");
         }
@@ -87,7 +87,7 @@ class myMVC
         if (empty($_SESSION['userLogin']['permission'])) {
             require_once app_path . '/Config/connectDB.php';
             $id_nhom = $_SESSION['userLogin']['id_nhom_tai_khoan'];
-            $sql = "SELECT * FROM quyen INNER JOIN chucnang ON quyen.id_chuc_nang = chucnang.id WHERE quyen.id_nhom_tai_khoan = $id_nhom AND quyen.trang_thai = 1";
+            $sql = "SELECT * FROM access INNER JOIN function ON access.id_function = function.id WHERE access.id_group_name = $id_nhom AND acess.status = 1";
             $res = mysqli_query(getDbConnection(), $sql);
             $auth = array();
             while ($row = mysqli_fetch_assoc($res)) {

@@ -10,8 +10,8 @@ define('model_path', app_path . '/Model/');
 //Khởi chạy
 
 require_once app_path . '/Core/app.php';
-require_once app_path . '/libs/functions.php';
-include app_path . '/Config/Config.php';
+require_once app_path . '/Core/functions.php';
+
 
 $app = new myMVC();
 $app->run();

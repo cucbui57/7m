@@ -17,28 +17,29 @@ class Controller
                 echo '<b>Layout Admin Not Found</b>';
                 exit();
             }
-        } else if ($this->currentController == 'cart') {
-            if (file_exists(layout_path . 'cart.phtml')) {
-                require_once layout_path . 'cart.phtml';
-            } else {
-                echo '<b>Layout Public Not Found</b>';
-                exit();
-            }
-        } else if ($this->currentController == 'product') {
-            if (file_exists(layout_path . 'product.phtml')) {
-                require_once layout_path . 'product.phtml';
-            } else {
-                echo '<b>Layout Public Not Found</b>';
-                exit();
-            }
-        } else {
-            if (file_exists(layout_path . 'master.phtml')) {
-                require_once layout_path . 'master.phtml';
-            } else {
-                echo '<b>Layout Public Not Found</b>';
-                exit();
-            }
         }
+//        else if ($this->currentController == 'cart') {
+//            if (file_exists(layout_path . 'cart.phtml')) {
+//                require_once layout_path . 'cart.phtml';
+//            } else {
+//                echo '<b>Layout Public Not Found</b>';
+//                exit();
+//            }
+//        } else if ($this->currentController == 'product') {
+//            if (file_exists(layout_path . 'product.phtml')) {
+//                require_once layout_path . 'product.phtml';
+//            } else {
+//                echo '<b>Layout Public Not Found</b>';
+//                exit();
+//            }
+//        } else {
+//            if (file_exists(layout_path . 'master.phtml')) {
+//                require_once layout_path . 'master.phtml';
+//            } else {
+//                echo '<b>Layout Public Not Found</b>';
+//                exit();
+//            }
+//        }
     }
 
     private function showContent()

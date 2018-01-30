@@ -6,7 +6,7 @@ class AdminUserModel extends Model
 //Lấy danh sách tài khoản
     public function loadListUser()
     {
-        $sql = "SELECT taikhoan.ho_ten,taikhoan.id,taikhoan.ten_dang_nhap,taikhoan.email,nhomtaikhoan.ten_nhom FROM taikhoan INNER JOIN nhomtaikhoan ON taikhoan.id_nhom_tai_khoan = nhomtaikhoan.id ORDER BY taikhoan.id ASC ";
+        $sql = "SELECT user.fullname,user.id,user.username,user.email,group_user.name FROM user INNER JOIN group_user ON user.id_group_user= group_user.id ORDER BY user.id ASC ";
         $res = mysqli_query($this->conn, $sql);
         $data = array();
         while ($row = mysqli_fetch_assoc($res)) {
@@ -18,7 +18,7 @@ class AdminUserModel extends Model
 //Lấy số lượng tải khoản
     public function countUser()
     {
-        $sql = "SELECT COUNT(id) FROM taikhoan";
+        $sql = "SELECT COUNT(id) FROM user";
         $res = mysqli_query($this->conn, $sql);
         $row = mysqli_fetch_row($res);
         return $row[0];
@@ -27,7 +27,7 @@ class AdminUserModel extends Model
 //Xoá tài khoản
     public function deleteUser($id)
     {
-        $sql = "DELETE FROM taikhoan WHERE id ='$id'";
+        $sql = "DELETE FROM user WHERE id ='$id'";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_error($this->conn)) {
             return mysqli_error($this->conn);
@@ -38,7 +38,7 @@ class AdminUserModel extends Model
 //Lấy thông tin tài khoản
     public function getUser($id)
     {
-        $sql = "SELECT ho_ten,email,ten_dang_nhap,id_nhom_tai_khoan,mat_khau FROM taikhoan WHERE id = $id";
+        $sql = "SELECT fullname,email,username,id_group_name,password FROM user WHERE id = $id";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return "Lỗi lấy thông tin tài khoản cần sửa: " . mysqli_errno($this->conn);
@@ -54,7 +54,7 @@ class AdminUserModel extends Model
 //Lấy thông tin nhóm tài khoản
     public function getGroup()
     {
-        $sql = "SELECT * FROM nhomtaikhoan ORDER BY id ASC";
+        $sql = "SELECT * FROM group_user ORDER BY id ASC";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return "Lỗi lấy thông tin tài khoản cần sửa: " . mysqli_errno($this->conn);
@@ -66,7 +66,7 @@ class AdminUserModel extends Model
 //Cập nhật thông tin tài khoản
     public function updateUser($user, $name, $email, $group, $pass)
     {
-        $sql = "UPDATE taikhoan SET ho_ten = '$name',email='$email',id_nhom_tai_khoan ='$group',mat_khau='$pass' WHERE ten_dang_nhap = '$user'";
+        $sql = "UPDATE user SET fullname= '$name',email='$email',id_group_name='$group',password='$pass' WHERE username= '$user'";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return "Lỗi lấy thông tin tài khoản cần sửa: " . mysqli_errno($this->conn);
@@ -77,12 +77,12 @@ class AdminUserModel extends Model
 //Thêm tài khoản
     public function signupDB($userName, $passWord, $email, $name, $group)
     {
-        $sql = "SELECT * FROM taikhoan WHERE (ten_dang_nhap = '$userName') OR (email ='$email')";
+        $sql = "SELECT * FROM user WHERE (username = '$userName') OR (email ='$email')";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_num_rows($res) != 0) {
             return "Đã tồn tại tên tài khoản " . $userName . " hoặc email " . $email;
         } else {
-            $sql = "INSERT INTO taikhoan(ten_dang_nhap,mat_khau,email,ho_ten,id_nhom_tai_khoan) VALUES ('$userName','$passWord','$email','$name',$group)";
+            $sql = "INSERT INTO user(username,password,email,fullname,id_group_name) VALUES ('$userName','$passWord','$email','$name',$group)";
             if (mysqli_query($this->conn, $sql)) {
                 echo "Đăng kí thành công";
             } else {
@@ -94,7 +94,7 @@ class AdminUserModel extends Model
 //Xem danh sách tài khoản theo nhóm tài khoản
     public function getUserByGroup($id)
     {
-        $sql = "SELECT ho_ten,email,ten_dang_nhap,id_nhom_tai_khoan,mat_khau FROM taikhoan WHERE id_nhom_tai_khoan = $id";
+        $sql = "SELECT name,email,username,id_user_name,password FROM user WHERE id_group_user= $id";
         $res = mysqli_query($this->conn, $sql);
         return mysqli_fetch_assoc($res);
     }
