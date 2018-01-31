@@ -1,0 +1,14 @@
+.img-product{
+    width: 100px;
+    height: 100px;
+}
+th, td{
+    text-align: center;
+}
+h1{
+    text-align: center;
+}
+
+.describe{
+    resize: unset;
+}

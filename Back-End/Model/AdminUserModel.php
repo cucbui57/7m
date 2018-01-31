@@ -38,7 +38,7 @@ class AdminUserModel extends Model
 //Lấy thông tin tài khoản
     public function getUser($id)
     {
-        $sql = "SELECT fullname,email,username,id_group_name,password FROM user WHERE id = $id";
+        $sql = "SELECT fullname,email,username,id_group_user,password FROM user WHERE id = $id";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return "Lỗi lấy thông tin tài khoản cần sửa: " . mysqli_errno($this->conn);
@@ -66,7 +66,7 @@ class AdminUserModel extends Model
 //Cập nhật thông tin tài khoản
     public function updateUser($user, $name, $email, $group, $pass)
     {
-        $sql = "UPDATE user SET fullname= '$name',email='$email',id_group_name='$group',password='$pass' WHERE username= '$user'";
+        $sql = "UPDATE user SET fullname= '$name',email='$email',id_group_user='$group',password='$pass' WHERE username= '$user'";
         $res = mysqli_query($this->conn, $sql);
         if (mysqli_errno($this->conn)) {
             return "Lỗi lấy thông tin tài khoản cần sửa: " . mysqli_errno($this->conn);
@@ -82,7 +82,7 @@ class AdminUserModel extends Model
         if (mysqli_num_rows($res) != 0) {
             return "Đã tồn tại tên tài khoản " . $userName . " hoặc email " . $email;
         } else {
-            $sql = "INSERT INTO user(username,password,email,fullname,id_group_name) VALUES ('$userName','$passWord','$email','$name',$group)";
+            $sql = "INSERT INTO user(username,password,email,fullname,id_group_user) VALUES ('$userName','$passWord','$email','$name',$group)";
             if (mysqli_query($this->conn, $sql)) {
                 echo "Đăng kí thành công";
             } else {
